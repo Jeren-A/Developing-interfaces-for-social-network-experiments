@@ -1,11 +1,14 @@
 from bs4 import BeautifulSoup
-with open('home.html', 'r') as html_file:
-    content = html_file.read()
-    print("----------------------------------------------------------------------------------------------------------------")
-    soup = BeautifulSoup(content, 'lxml')
-    course_cards = soup.find_all('div', class_='card')
-    for card in course_cards:
-        course_name  = card.h5.text
-        course_price = card.a.text.split()[-1]
+dict1 = {}
 
-        print(f'{course_name} costs {course_price}')
+
+
+def get_tw():
+    with open('../Mastodon.html', 'r',encoding='utf-8') as html_file:
+        content = html_file.read()
+        soup = BeautifulSoup(content, 'lxml')
+        tws = soup.find_all('div', class_='status__wrapper focusable')
+        for tw in tws:
+            key = tw.text[:tw.text.find('<p')]
+            dict1[key]=tw.text[tw.text.find('<p')+3:-4].replace('</p><p>',' ')
+    return dict1

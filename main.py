@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-
+from web_scraping import get_tw
 
 # SETTING PAGE CONFIG TO WIDE MODE
 st.set_page_config(layout="wide")
@@ -21,7 +21,12 @@ def load_data(nrows):
     data[DATE_TIME] = pd.to_datetime(data[DATE_TIME])
     return data
 
+dict1 = get_tw()
+tws = pd.DataFrame.from_dict(dict1,orient='index')
+
 data = load_data(100000)
 
 
-st.dataframe(data)
+#st.dataframe(data)
+st.dataframe(tws)
+st.table(tws)
