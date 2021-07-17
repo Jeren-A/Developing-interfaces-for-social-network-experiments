@@ -1,39 +1,29 @@
-
+from mastodon_api import Pure
 import streamlit as st
 import pandas as pd
 import numpy as np
 from web_scraping import get_tw
+import plotly.express as px
+
+
 
 # SETTING PAGE CONFIG TO WIDE MODE
-st.set_page_config(layout="wide")
+st.set_page_config(page_title = 'Dashboard', page_icon = '💯')
+
+
+pure = Pure()
+title, rule = pure.title_and_rule()
+st.title(title)
+st.markdown(rule)
+pure.get_timeline_users()
+df1 = pure.create_df()
+#st.table(df1)
+st.dataframe(df1)
 
 
 
-@st.cache(persist=True)
-def load_data(nrows):
-    data = pd.read_csv(DATA_URL, nrows=nrows)
-    lowercase = lambda x: str(x).lower()
-    data.rename(lowercase, axis="columns", inplace=True)
-    data[DATE_TIME] = pd.to_datetime(data[DATE_TIME])
-    return data
-
-dict1 = get_tw()
-tws = pd.DataFrame.from_dict(dict1,orient='index')
 
 
-st.title('Dashboard')
-st.markdown('Welcome to dashboard for the project XXXXX')
-st.markdown('* this is a bulletpoint')
-
-df = pd.read_csv("data.csv",names=['Time','mq4'])
-df['Time'] = pd.to_datetime(df['Time'],format=("%H:%M:%S"))
-st.dataframe(df)
-data=df['mq4']
-st.line_chart(data)
-st.area_chart(data)
-st.bar_chart(data)
-
-
-
-#st.dataframe(tws)
-st.table(tws)
+fig = px.scatter(df1, x="toot_time", y="favourites_count", hover_name="usernames", hover_data=["content", "user_ids"])
+fig.update_layout(plot_bgcolor = '#0E1117')
+st.plotly_chart(fig)

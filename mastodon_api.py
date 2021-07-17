@@ -1,26 +1,51 @@
-<<<<<<< HEAD
+from re import A
 from mastodon import Mastodon
+import pandas as pd
+import numpy as np
+from bs4 import BeautifulSoup
+class Pure:
+    def __init__(self):
+        self.data= Mastodon(
+            access_token = 'user_jeren.secret',
+            api_base_url = 'https://dogukankefeli.tech')
+        self.unique = []
 
-mastodon = Mastodon(
-    client_id = 'pytooter_clientcred.secret',
-    api_base_url = 'https://dogukankefeli.tech'
-)
-mastodon.log_in(
-    'dogukankefeli@protonmail.com',
-    '20bad20e27a864a705234e4839fb77c1',
-    to_file = 'pytooter_usercred.secret'
-)
-=======
-from mastodon import Mastodon
-
-mastodon = Mastodon(
-    client_id = 'pytooter_clientcred.secret',
-    api_base_url = 'https://dogukankefeli.tech'
-)
-mastodon.log_in(
-    'dogukankefeli@protonmail.com',
-    '20bad20e27a864a705234e4839fb77c1',
-    to_file = 'pytooter_usercred.secret'
-)
->>>>>>> 58f19f69fc2e9677f00dc0687c7bb13141e9827e
-mastodon.toot('xdd')
+    def title_and_rule(self):
+        instance_logs = self.data.instance()
+        title = instance_logs['uri']
+        rule = instance_logs['rules'][0]['text']
+        return title, rule
+    
+    def get_timeline_users(self):
+        timeline = self.data.timeline()
+        user = []
+        for i in range(len(timeline)):
+            user.append(timeline[i]['account']['id'])
+        self.unique = np.unique(user)
+    
+    def create_df(self):
+        user_ids = []
+        usernames = []
+        toot_ids = []
+        toot_time = []
+        toot_favourites_count = []
+        content = []
+        for user in self.unique:    
+            statuses = self.data.account_statuses(user)
+            for toot in statuses:
+                user_ids.append(toot['account']['id'])
+                usernames.append(toot['account']['username'])
+                toot_ids.append(toot['id'])
+                toot_time.append(toot['created_at'])
+                toot_favourites_count.append(toot['favourites_count'])
+                soup = BeautifulSoup(toot['content'])
+                content.append(soup.get_text())
+        data = {}
+        data['user_ids'] = user_ids
+        data['usernames'] = usernames
+        data['toot_ids'] = toot_ids
+        data['toot_time'] = toot_time
+        data['favourites_count'] = toot_favourites_count
+        data['content']=content
+        df = pd.DataFrame(data)
+        return df
