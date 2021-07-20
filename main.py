@@ -30,7 +30,6 @@ fig.update_layout(plot_bgcolor = '#0E1117')
 
 
 st.plotly_chart(fig)
-<<<<<<< HEAD
 #BURADAAA
 # import PyPDF2
 # import numpy as np
@@ -50,6 +49,4 @@ st.plotly_chart(fig)
 # except:
 #     pass
 
-=======
->>>>>>> 0e88e4ca1c4f45e4ac491f010fab1de46f2eadf4
 
