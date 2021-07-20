@@ -1,3 +1,4 @@
+
 from mastodon_api import Pure
 import streamlit as st
 import pandas as pd
@@ -24,6 +25,28 @@ st.dataframe(df1)
 
 
 
-fig = px.scatter(df1, x="toot_time", y="favourites_count", hover_name="usernames", hover_data=["content", "user_ids"])
+fig = px.scatter(df1, x="toot_time", y="favourites_count", hover_name="usernames", hover_data=["content", "user_ids"], )
 fig.update_layout(plot_bgcolor = '#0E1117')
+
+
 st.plotly_chart(fig)
+#BURADAAA
+import PyPDF2
+import numpy as np
+import time 
+
+pdfFileObj = open('book.pdf', 'rb')
+ 
+pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+
+pageObj = pdfReader.getPage(np.random.randint(0,968))
+
+try:
+    text = pageObj.extractText().split('\n')
+    text2 = text[np.random.randint(len(text)-3):np.random.randint(len(text)-3)+3]
+    text3 = " ".join(text2)
+    text3
+except:
+    pass
+
+
