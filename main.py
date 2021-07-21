@@ -3,9 +3,13 @@ from mastodon_api import Pure
 import streamlit as st
 import pandas as pd
 import numpy as np
-from web_scraping import get_tw
 import plotly.express as px
-
+  
+import streamlit.components.v1 as components
+import networkx as nx
+import matplotlib.pyplot as plt
+from pyvis.network import Network
+import got 
 
 
 def display_toots(username_input):
@@ -35,7 +39,23 @@ try:
     fig2.update_layout(plot_bgcolor = '#CCCCCC')
     st.plotly_chart(fig2)
 except Exception as ex:
-
     template = "An exception of type {0} occurred. Arguments:\n{1!r}"
     message = template.format(type(ex).__name__, ex.args)
     print (message)
+
+st.title(' Pyvis Network Visualization')
+# make Network show itself with repr_html
+
+#def net_repr_html(self):
+#  nodes, edges, height, width, options = self.get_network_data()
+#  html = self.template.render(height=height, width=width, nodes=nodes, edges=edges, options=options)
+#  return html
+
+physics=False
+#physics=st.sidebar.checkbox('add physics interactivity?')
+
+got.got_func(physics)
+
+HtmlFile = open("gameofthrones.html", 'r', encoding='utf-8')
+source_code = HtmlFile.read() 
+components.html(source_code, height = 1200,width=800)
