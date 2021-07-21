@@ -137,4 +137,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+<<<<<<< HEAD
 *.secret
+=======
+*.secret
+*.pdf
+>>>>>>> 208d190fc8034391c6b4680eb375f7739cc19d0e
