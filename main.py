@@ -3,6 +3,7 @@ from mastodon_api import Pure
 import streamlit as st
 import pandas as pd
 import numpy as np
+import graphviz as graphviz
 import plotly.express as px
   
 import streamlit.components.v1 as components
@@ -59,3 +60,43 @@ got.got_func(physics)
 HtmlFile = open("gameofthrones.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 components.html(source_code, height = 1200,width=800)
+
+def follow_df():
+
+
+  from mastodon import Mastodon
+
+  mastodon = Mastodon(
+      client_id = 'pytooter_clientcred.secret',
+      api_base_url = 'https://dogukankefeli.tech'
+  )
+  mastodon.log_in(
+      'dogukankefeli@gmail.com',
+      '9a65202322deed907dd86175d27aa66c',
+      to_file = 'pytooter_usercred.secret'
+  )
+  
+  timeline = mastodon.timeline(limit=200)
+  user = {}
+  for toot in timeline:
+      user[toot['account']['id']] = toot['account']['username']
+  
+  source = [] #users
+  target = [] #followers
+  
+  for key, value in user.items():
+      u_follower = mastodon.account_followers(key)
+      for k in u_follower:
+          source.append(value)
+          target.append(k['username'])
+  df = pd.DataFrame()
+  df['Source'] = source
+  df['Target'] = target
+  df['Weight'] = 1
+  return df
+
+data_frame = follow_df()
+graph = graphviz.Digraph()
+for a, b in zip(data_frame['Source'].values, data_frame['Target'].values):
+    graph.edge(a, b)
+st.graphviz_chart(graph)

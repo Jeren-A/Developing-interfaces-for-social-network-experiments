@@ -4,13 +4,48 @@ from pyvis.network import Network
 import pandas as pd
 import streamlit as st
 
+def follow_df():
+
+
+  from mastodon import Mastodon
+
+  mastodon = Mastodon(
+      client_id = 'pytooter_clientcred.secret',
+      api_base_url = 'https://dogukankefeli.tech'
+  )
+  mastodon.log_in(
+      'dogukankefeli@gmail.com',
+      '9a65202322deed907dd86175d27aa66c',
+      to_file = 'pytooter_usercred.secret'
+  )
+  
+  timeline = mastodon.timeline(limit=200)
+  user = {}
+  for toot in timeline:
+      user[toot['account']['id']] = toot['account']['username']
+  
+  source = [] #users
+  target = [] #followers
+  
+  for key, value in user.items():
+      u_follower = mastodon.account_followers(key)
+      for k in u_follower:
+          source.append(value)
+          target.append(k['username'])
+  df = pd.DataFrame()
+  df['Source'] = source
+  df['Target'] = target
+  df['Weight'] = 1
+  return df
+
 
 def got_func(physics):
   got_net = Network(height="600px", width="100%")
 
 # set the physics layout of the network
   got_net.barnes_hut()
-  got_data = pd.read_csv("https://www.macalester.edu/~abeverid/data/stormofswords.csv")
+  #got_data = pd.read_csv("https://www.macalester.edu/~abeverid/data/stormofswords.csv")
+  got_data = follow_df()
   #got_data = pd.read_csv("stormofswords.csv")
   #got_data.rename(index={0: "Source", 1: "Target", 2: "Weight"}) 
   sources = got_data['Source']
