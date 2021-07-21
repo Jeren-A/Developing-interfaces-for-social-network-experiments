@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 class Pure:
     def __init__(self):
         self.data= Mastodon(
-            access_token = 'user_jeren.secret',
+            access_token = 'pytooter_clientcred.secret',
             api_base_url = 'https://dogukankefeli.tech')
         self.unique = []
 
