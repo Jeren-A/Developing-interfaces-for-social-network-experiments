@@ -4,6 +4,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 class Pure:
     def __init__(self):
+        super().__init__(self)
         self.data= Mastodon(
             access_token = 'pytooter_usercred.secret',
             api_base_url = 'https://dogukankefeli.tech')

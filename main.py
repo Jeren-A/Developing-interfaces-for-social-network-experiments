@@ -29,7 +29,7 @@ st.title(title)
 st.markdown(rule)
 
 try:
-    username_input = st.text_input('Enter username',key='Enter a username')
+    username_input = st.text_input('Enter username2',key='3696216')
     display_toots(username_input)
 except:
     pass
