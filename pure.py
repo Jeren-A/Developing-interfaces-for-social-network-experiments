@@ -6,8 +6,9 @@ import numpy as np
 from bs4 import BeautifulSoup
 #API_BASE = 'https://dogukankefeli.tech'
 class Pure(Mastodon):
-    def __init__(self):
-        Mastodon.__init__(self,access_token = 'secrets/usercred.secret',
+    def __init__(self,access_token = 'secrets/usercred.secret',
+            api_base_url = 'https://mastodon.social'):
+        super().__init__(access_token = 'secrets/usercred.secret',
             api_base_url = 'https://mastodon.social')
     def title_and_desc(self):
         """Gives the title and description for the server"""
