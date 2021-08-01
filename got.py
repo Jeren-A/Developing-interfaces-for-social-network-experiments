@@ -3,23 +3,10 @@ import matplotlib.pyplot as plt
 from pyvis.network import Network
 import pandas as pd
 import streamlit as st
-
+from pure import Pure
 def follow_df():
-
-
-  from mastodon import Mastodon
-
-  mastodon = Mastodon(
-      client_id = 'pytooter_clientcred.secret',
-      api_base_url = 'https://dogukankefeli.tech'
-  )
-  mastodon.log_in(
-      'dogukankefeli@gmail.com',
-      '9a65202322deed907dd86175d27aa66c',
-      to_file = 'pytooter_usercred.secret'
-  )
-  
-  timeline = mastodon.timeline(limit=200)
+  pure = Pure()
+  timeline = pure.timeline(limit=200)
   user = {}
   for toot in timeline:
       user[toot['account']['id']] = toot['account']['username']
@@ -28,7 +15,7 @@ def follow_df():
   target = [] #followers
   
   for key, value in user.items():
-      u_follower = mastodon.account_followers(key)
+      u_follower = pure.account_followers(key)
       for k in u_follower:
           source.append(value)
           target.append(k['username'])
