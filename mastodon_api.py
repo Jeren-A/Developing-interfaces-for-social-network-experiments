@@ -1,16 +1,20 @@
-from re import A
 from mastodon import Mastodon
 import pandas as pd
 import numpy as np
 from bs4 import BeautifulSoup
 class Pure:
     def __init__(self):
+        super().__init__(self)
         self.data= Mastodon(
+<<<<<<< HEAD
 <<<<<<< HEAD
             access_token = 'pytooter_clientcred.secret',
 =======
             access_token = 'user_jeren.secret',
 >>>>>>> 208d190fc8034391c6b4680eb375f7739cc19d0e
+=======
+            access_token = 'pytooter_usercred.secret',
+>>>>>>> nodes
             api_base_url = 'https://dogukankefeli.tech')
         self.unique = []
 
