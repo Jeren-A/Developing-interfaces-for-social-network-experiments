@@ -193,6 +193,6 @@ class Pure(Mastodon):
           </div>
         """.format(id=acc_dict['id'],header_static=acc_dict['header_static'],avatar_static=acc_dict['avatar_static'],username=acc_dict['username'],display_name=acc_dict['display_name'],note=acc_dict['note'],url=acc_dict['url'],statuses_count=acc_dict['statuses_count'],following_count=acc_dict['following_count'],followers_count=acc_dict['followers_count'])
 
-        Html_file = open("profile.html","w")
+        Html_file = open("profile.html","w",encoding="utf-8")
         Html_file.write(full_text)
         Html_file.close()
