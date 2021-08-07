@@ -62,13 +62,20 @@ if radio_select=='User Toots':
 #  html = self.template.render(height=height, width=width, nodes=nodes, edges=edges, options=options)
 #  return html
 
-elif radio_select=='Diffusion Netwok':  
-    df_table = pure.followings_network()
+elif radio_select=='Diffusion Netwok':
+    st.title('Diffusion Netwok')
+    username_input = st.text_input('Enter username')
+    if not username_input:
+        st.warning('Please input a name.')
+        st.stop()
+        st.success('Thank you for inputting a name.')
+    id_of_user = pure.get_user_id(username_input)
+    df_table = pure.followings_network(id=id_of_user)
     st.balloons()
     show_network(df_table)
 
 elif radio_select=='Diffusion Network for Timeline':
-    df_table = pure.timeline_network()
+    df_table = pure.timeline_network(id)
     show_network(df_table)
 elif radio_select=='User Profile':
     st.title('User Profile')

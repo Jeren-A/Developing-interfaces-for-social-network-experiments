@@ -15,16 +15,20 @@ def social_net_function(social_data):
   sources = social_data['Source']
   targets = social_data['Target']
   weights = social_data['Weight']
+  color = social_data['Color']
+  size = social_data['Size']
+  #size = [float(i)/max(size) for i in size]*
 
-  edge_data = zip(sources, targets, weights)
+  edge_data = zip(sources, targets, weights, color, size)
 
   for e in edge_data:
     src = e[0]
     dst = e[1]
     w = e[2]
-
-    social_net.add_node(src, src, title=src)
-    social_net.add_node(dst, dst, title=dst)
+    c = e[3]
+    s = e[4]
+    social_net.add_node(src, src, title=src ,color=c, size=s)
+    social_net.add_node(dst, dst, title=dst ,color=c, size=s)
     social_net.add_edge(src, dst, value=w)
 
   neighbor_map = social_net.get_adj_list()

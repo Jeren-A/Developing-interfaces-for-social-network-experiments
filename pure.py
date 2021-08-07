@@ -110,26 +110,51 @@ class Pure(Mastodon):
         return df
 
     def followings_network(self,id=958614):
+        minid=0
+        followings = self.account_following(id)
+        df = pd.DataFrame(followings)
+        more_followings = [followings]
+        for _ in range(10):
+            minid = df['id'].max()
+            followings = self.account_following(149988,min_id=minid)
+            more_followings+=followings
+            df2 = pd.DataFrame(followings)
+            df = df.append(df2,ignore_index=True)
         username = self.account(id)['username']
 
-        followings = self.account_following(id)
+        
         users={}
         source = [] #users
         target = [] #followers
+        color = [] #color for bots
+        size = [] #size 
         for following in followings:
             users[following['id']]=following['username']
             source.append(username)
             target.append(following['username'])
+            size.append(following['followers_count'])
+            if following['bot']==True:
+                color.append('#cc0000')
+            else:
+                color.append('#1f368e')
+
 
         for key, value in users.items():
             u_follower = self.account_following(key)
             for k in u_follower:
                 source.append(value)
                 target.append(k['username'])
+                size.append(k['followers_count'])
+                if k['bot']==True:
+                    color.append('#cc0000')
+                else:
+                    color.append('#1f368e')
         df = pd.DataFrame()
         df['Source'] = source
         df['Target'] = target
         df['Weight'] = 0.1
+        df['Color'] = color
+        df['Size'] = size
         df.loc[df['Source']==username,'Weight']=0.2
         return df
 
