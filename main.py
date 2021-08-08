@@ -17,12 +17,43 @@ def show_network(df_table):
     source_code = HtmlFile.read() 
     components.html(source_code, height = 1400,width=1000)
 # SETTING PAGE CONFIG TO WIDE MODE
-st.set_page_config(page_title = 'Dashboard', page_icon = '💯')
+st.set_page_config(page_title = 'Dashboard', page_icon = '💯',layout="wide")
 
 radio_select = st.sidebar.radio(
     "Show:",
     ('User Toots','User Profile','Diffusion Netwok', 'Diffusion Network for Timeline'))
+def toots_graphs(id=149988):
+    import altair as alt
+    import pandas as pd
+    df = pure.get_user_toots(id) #get user toots
+    df_toottime = df.groupby([df['toot_time'].dt.date]).count() #groupby datetime.days
 
+    df_toottime.index = pd.to_datetime(df_toottime.index) #convert index string to datetime obj
+    df_toottime.drop(columns=['toot_time'],inplace=True) #drop existing 'toot_time' columns
+    df_toottime.reset_index(inplace=True) #make toot_time date acccesible 
+
+    df_toottime['DoW'] = df_toottime['toot_time'].dt.day_name() #create new columns for day of the week
+
+    cats = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] #categorical dow
+    df_toottime['DoW'] = pd.Categorical(df_toottime['DoW'], categories=cats, ordered=True)
+    df_toottime = df_toottime.sort_values('DoW') #sort by days
+    df_hist = df_toottime.groupby([df_toottime['DoW']]).count() #count how many toots in days
+
+    df_hist.reset_index(inplace=True)
+
+    # Toots by day of week 
+    alt_dow = alt.Chart(df_hist).mark_bar().encode(
+    alt.X('DoW', title='Day',sort=None),
+        alt.Y('username', title='Toot Counts'),
+        color=alt.Color('DoW', sort=['GOOG'])).properties(width=500).interactive()
+
+    # Toots timeseries
+    alt_timeseries = alt.Chart(df_toottime).mark_bar(size=12).encode(
+    alt.X('toot_time:T', title='Day'),
+        alt.Y('username', title='Toot Counts'),
+    color='DoW').properties(width=500).interactive()
+
+    return alt_dow,alt_timeseries
 
 pure = Pure()
 
@@ -88,7 +119,37 @@ elif radio_select=='User Profile':
     pure.account_info(id_of_user)
     HtmlFile = open("profile.html", 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
-    components.html(source_code, height = 1400,width=1000)
+    components.html(source_code, height = 600,width=1000)
+    alt_day_ot_week, alt_timelinegraph = toots_graphs(id_of_user)
+
+    col1, col2 = st.beta_columns(2)
+
+    with col1:
+        st.header("Toots by day of week")
+        st.altair_chart(alt_day_ot_week,use_container_width=True)
+
+    with col2:
+        st.header("Toots timeseries")
+        st.altair_chart(alt_timelinegraph,use_container_width=True)
+
+
+
+
+
+    # st.altair_chart(alt_day_ot_week,use_container_width=True)
+    # st.altair_chart(alt_timelinegraph,use_container_width=True)
+
+
+
+
+
+
+
+    #col1, col2 = st.columns(2)
+    #col1.subheader('Toots by day of the week')
+    #col1.altair_chart(alt_day_ot_week,use_container_width=True)
+    #col2.subheader('Toot counts by day')
+    #col2.altair_chart(alt_timelinegraph,use_container_width=True)
 #data_frame = followings_df()
 # graph = graphviz.Digraph()
 # for a, b in zip(data_frame['Source'].values, data_frame['Target'].values):
