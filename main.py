@@ -9,6 +9,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from pyvis.network import Network
 import network_generator 
+from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 def show_network(df_table):
@@ -70,7 +71,9 @@ st.markdown(rule,unsafe_allow_html=True)
 def word_cloud(text):
     text = text.lower()
     stopwords = {"i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"}
-    wordcl = WordCloud(stopwords=stopwords, background_color="white", max_font_size=120, max_words= 3000, width=1600, height=800).generate(text)
+    mask = np.array(Image.open('img/mmm.png'))
+    wordcl = WordCloud(stopwords=stopwords, background_color='white', mask=mask, mode='RGB', 
+             max_words=3000, width=1600, height=800, max_font_size=120, random_state=1).generate(text)
     image = wordcl.to_image()
     st.image(image, width=None)
 
