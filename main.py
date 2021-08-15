@@ -9,6 +9,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from pyvis.network import Network
 import network_generator 
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 def show_network(df_table):
     st.title('Diffusion Network Visualization')
@@ -21,7 +22,7 @@ st.set_page_config(page_title = 'Dashboard', page_icon = '💯',layout="wide")
 
 radio_select = st.sidebar.radio(
     "Show:",
-    ('User Toots','User Profile','Diffusion Netwok', 'Diffusion Network for Timeline'))
+    ('User Toots','User Profile','Diffusion Netwok', 'Word Cloud'))
 def toots_graphs(id=149988):
     import altair as alt
     import pandas as pd
@@ -66,6 +67,12 @@ st.markdown(rule,unsafe_allow_html=True)
 #HtmlFile = open("profile.html", 'r')
 #source_code = HtmlFile.read() 
 #components.html(source_code, height = 2000,width=800)
+def word_cloud(text):
+    text = text.lower()
+    stopwords = {"i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"}
+    wordcl = WordCloud(stopwords=stopwords, background_color="white", max_font_size=50, max_words= 2000).generate(text)
+    image = wordcl.to_image()
+    st.image(image, width=None)
 
 if radio_select=='User Toots':
     st.title('User Toots')
@@ -105,9 +112,7 @@ elif radio_select=='Diffusion Netwok':
     st.balloons()
     show_network(df_table)
 
-elif radio_select=='Diffusion Network for Timeline':
-    df_table = pure.timeline_network(id)
-    show_network(df_table)
+
 elif radio_select=='User Profile':
     st.title('User Profile')
     username_input = st.text_input('Enter username')
@@ -132,6 +137,10 @@ elif radio_select=='User Profile':
         st.header("Toots timeseries")
         st.altair_chart(alt_timelinegraph,use_container_width=True)
 
+elif radio_select=='Word Cloud':
+    text = pure.toot_text()
+    st.title("Word Cloud")
+    word_cloud(text)
 
 
 
@@ -155,3 +164,4 @@ elif radio_select=='User Profile':
 # for a, b in zip(data_frame['Source'].values, data_frame['Target'].values):
 #     graph.edge(a, b)
 # st.graphviz_chart(graph)
+

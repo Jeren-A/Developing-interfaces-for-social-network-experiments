@@ -6,9 +6,9 @@ import numpy as np
 from bs4 import BeautifulSoup
 #API_BASE = 'https://dogukankefeli.tech'
 class Pure(Mastodon):
-    def __init__(self,access_token = 'secrets/usercred.secret',
+    def __init__(self,access_token = 'AWqV07--4qMCJPjbp2yGJo57yU79Ig7BBDlFyP6tOEQ',
             api_base_url = 'https://mastodon.social'):
-        super().__init__(access_token = 'secrets/usercred.secret',
+        super().__init__(access_token = 'AWqV07--4qMCJPjbp2yGJo57yU79Ig7BBDlFyP6tOEQ',
             api_base_url = 'https://mastodon.social')
     def title_and_desc(self):
         """Gives the title and description for the server"""
@@ -108,7 +108,7 @@ class Pure(Mastodon):
         df['Target'] = target
         df['Weight'] = 0.1
         return df
-
+#jeren do this
     def followings_network(self,id=958614):
         minid=0
         followings = self.account_following(id)
