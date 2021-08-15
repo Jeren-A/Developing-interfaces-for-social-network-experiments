@@ -234,12 +234,25 @@ class Pure(Mastodon):
         minid=0
         toots = self.account_statuses(id)
         df = pd.DataFrame(toots)
-        toots_info_list = [toots][0]
+        toots_list = [toots][0]
         main_text = ""
-        for toot in toots_info_list:
+        for toot in toots_list:
             text= toot['content']
             main_text += text + " "
         main_text = self.cleanhtml(main_text)
+
+        for _ in range(10):
+            minid = df['id'].min()
+            toots_2 = self.account_statuses(149988, max_id =minid)
+            df2 = pd.DataFrame(toots)
+            toots_list2 = [toots_2][0]
+            sub_text = ""
+            for toot in toots_list2:
+                text= toot['content']
+                sub_text += text + " "
+            sub_text = self.cleanhtml(sub_text)
+            main_text+=sub_text
+            
         return main_text
         
 
