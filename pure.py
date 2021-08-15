@@ -10,6 +10,7 @@ class Pure(Mastodon):
             api_base_url = 'https://mastodon.social'):
         super().__init__(access_token = 'AWqV07--4qMCJPjbp2yGJo57yU79Ig7BBDlFyP6tOEQ',
             api_base_url = 'https://mastodon.social')
+    
     def title_and_desc(self):
         """Gives the title and description for the server"""
         size = 'width="20" height="20"'
@@ -108,7 +109,7 @@ class Pure(Mastodon):
         df['Target'] = target
         df['Weight'] = 0.1
         return df
-#jeren do this
+
     def followings_network(self,id=958614):
         minid=0
         followings = self.account_following(id)
@@ -137,7 +138,6 @@ class Pure(Mastodon):
                 color.append('#cc0000')
             else:
                 color.append('#1f368e')
-
 
         for key, value in users.items():
             u_follower = self.account_following(key)
@@ -178,7 +178,7 @@ class Pure(Mastodon):
               @{username}
               <icon-verified user="user" class="ng-isolate-scope"><!-- ngIf: user.userData.verified --></icon-verified>
             </h1>
-            <a class="user-detail-profile-link ng-scope" ng-href="https://mastodon.social/@{username}" href="https://mastodon.social/@{username}" target="_blank">
+            <a class="user-detail-profile-link ng-scope" ng-href="https://mastodon.social/@{username}" href="https://mastodon.social/@{username}">
               <i class="glyphicon glyphicon-user"></i>
             </a>
             <div class="user-detail-banner-container ng-scope">
@@ -220,3 +220,30 @@ class Pure(Mastodon):
         Html_file = open("profile.html","w",encoding="utf-8")
         Html_file.write(full_text)
         Html_file.close()
+
+
+    def cleanhtml(self, raw_html):
+        import re
+        cleanr = re.compile('<.*?>')
+        cleantext = re.sub(cleanr, '', raw_html)
+        return cleantext
+    
+
+    def toots_text(self, id=958614):
+        
+        minid=0
+        toots = self.account_statuses(id)
+        df = pd.DataFrame(toots)
+        toots_info_list = [toots][0]
+        main_text = ""
+        for toot in toots_info_list:
+            text= toot['content']
+            main_text += text + " "
+        main_text = self.cleanhtml(main_text)
+        return main_text
+        
+
+
+    
+
+  
