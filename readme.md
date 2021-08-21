@@ -1,7 +1,9 @@
 
 ## Install dependencies
 To install all dependencies please run `requirements.txt`  file first:
+
 ` pip install -r requirements.txt`  -> python2 users
+
 ` pip3 install -r requirements.txt` -> python3 users
 
 ## Run the project
