@@ -27,16 +27,19 @@ Main.py file functionality:
          3. Graph can also display details about each toot when clicked on it.
          
 *  If user selects **User Profile**:
+        
         1. Program displays *.html* file that includes information about .... of user
         2. Display Account Statistics:
                 * **Toots by day of week** - frequency of last 40 toots accorgins to the days of the week
                 * **Toots timeseries** - frequency of last 40 toots according to the timespan
 * If user selects **Diffusion Netwok**:
-        - Program gets user id from username
-        - Creates `followings_network` from Pure object 
-        - Displays Diffusion Network on Dashboard
+        
+        1. Program gets user id from username
+        2. Creates `followings_network` from Pure object 
+        3. Displays Diffusion Network on Dashboard
 * If user selects **Word Cloud**:
-         - Program gets toots' content from Pure object and creates a word cloud of upto 3000 words in shape of Mastodon
+         
+         1. Program gets toots' content from Pure object and creates a word cloud of upto 3000 words in shape of Mastodon
 
 
 
