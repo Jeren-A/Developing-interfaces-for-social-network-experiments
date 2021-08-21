@@ -21,8 +21,9 @@ Main.py file functionality:
 * Create a *Pure* object
 * Display *Options Menu : User Toots, User Profile, Diffusion Netwok, Word Cloud*
 * If user selects **User Toots**:
-         - By getting a username from the user, program calls `get_user_id` and `get_user_toots` methods of Pure object and displays a graph of toots' favourites_count versus toot_time.
-         -Graph can also display details about each toot when clicked on it.
+
+         1. By getting a username from the user, program calls `get_user_id` and `get_user_toots` methods of Pure object and displays a graph of toots' favourites_count versus toot_time.
+         2. Graph can also display details about each toot when clicked on it.
 *  If user selects **User Profile**:
         - Program displays *.html* file that includes information about .... of user
         - Display Account Statistics:
