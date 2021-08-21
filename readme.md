@@ -30,8 +30,8 @@ Main.py file functionality:
         
         - Program displays *.html* file that includes information about .... of user
         - Display Account Statistics:
-                * **Toots by day of week** - frequency of last 40 toots accorgins to the days of the week
-                * **Toots timeseries** - frequency of last 40 toots according to the timespan
+                - Toots by day of week - frequency of last 40 toots accorgins to the days of the week
+                - Toots timeseries  - frequency of last 40 toots according to the timespan
 * If user selects **Diffusion Netwok**:
         
         - Program gets user id from username
