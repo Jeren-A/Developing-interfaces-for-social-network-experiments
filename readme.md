@@ -2,56 +2,32 @@
 ## Install dependencies
 To install all dependencies please run `requirements.txt`  file first:
 
-python2: ` pip install -r requirements.txt`  
+ ` pip3 install -r requirements.txt`
 
-python3: ` pip3 install -r requirements.txt`
-
-## Run the project
-To see dashboard on your local host run: 
+## Preview the project
+To view dashboard on your local host run: 
     ``` streamlit run main.py```
 
 
 # Technicality: 
 
 ## Steamlit
-Streamlit is an open-source app framework used to create a Dashboard with Python. `main.py` is the main frontend source file to run the project.
+Streamlit is an open-source app framework used to create a Dashboard with Python.  
+`main.py` is the main frontend source file to run the project.  
 
-## Main.py
-Main.py file functionality:
-* Create a *Pure* object
-* Display *Options Menu : User Toots, User Profile, Diffusion Netwok, Word Cloud*
-* If user selects **User Toots**:
-
-         - Gets username and calls `get_user_id` and `get_user_toots` methods of Pure object
-         - Displays a graph of toots' favourites_count versus toot_time.
-         - Graph can also display details about each toot when clicked on it.
-         
-*  If user selects **User Profile**:
-        
-        - Program displays *.html* file that includes information about .... of user
-        - Display Account Statistics:
-                - Toots by day of week - frequency of last 40 toots accorgins to the days of the week
-                - Toots timeseries  - frequency of last 40 toots according to the timespan
-* If user selects **Diffusion Netwok**:
-        
-        - Program gets user id from username
-        - Creates `followings_network` from Pure object 
-        - Displays Diffusion Network on Dashboard
-* If user selects **Word Cloud**:
-         
-        - Program gets toots' content from Pure object and creates a word cloud of upto 3000 words in shape of Mastodon
-
-
-
-## Pure.py
- - serves as a `server communicator` between Mastadon and ...
+## Pure.py  
+ - serves as a `server communicator` between Mastadon and Dashboard  
 
 ### Creating an actual Mastodon API instance:
-By creating a `Pure` object you create an actual mastadon API instance.  It has an API that allows you to interact with matodon's every aspect. 
+By creating a `Pure` object you create an actual mastadon API instance.  It has an API that allows you to interact with mastodon's every aspect.  
+Generate your own secret files with `Mastodon.py` class and substitute your details to Pure object.
+
 
 #### *Pure* object's functionality :
 
- 1. Assig a title and a descriction for the server
+
+
+ 1. Get a title and a description from the server  - when conducting research on other mastodon servers your dashboard will automatically update its title
  2. Get a timeline of specific logged in user
  3. Create a dataframe which includes `{user_ids, usernames, toot_ids, toot_time, favourites_count, toot_content}`
  4. Get *user_id* provided a username
@@ -61,11 +37,30 @@ By creating a `Pure` object you create an actual mastadon API instance.  It has 
  8. Get clean content of last 400 toots provided a user_id implemented to create a **Word Cloud**
  
 
-## Deploy Dashboard on Streamlit
- - Host your project in a public GitHub repo
- - Sign up for Streamlit sharing:
-       
-      1. Request an invite at streamlit.io/sharing (receiving invite may take couple of days)
-      2. After receiveing your invite email, you can deploy your app by following the steps here https://docs.streamlit.io/en/stable/deploy_streamlit_app.html 
+
+## Main.py
+Main.py file functionality:  
+* Implement a *Pure* object  
+* Display *Options Menu : User Toots, User Profile, Diffusion Netwok, Word Cloud*
+* If user selects **User Toots**:
+
+         - Takes username as input and calls `get_user_id` to communicate with Mastodon API and calls `get_user_toots` method of Pure object
+         - Plots a graph of toots' favourites_count versus toot_time  
+         - Graph can also display details about each toot when hover on it  
+         
+*  If user selects **User Profile**:
         
-       
+        - Program displays .html file that includes information about user
+        - Display Account Statistics:
+                - Toots by day of the week 
+                - Toots timeseries  
+                
+* If user selects **Diffusion Netwok**:
+        
+        - Takes username as an input and displays Diffusion Network  
+        
+* If user selects **Word Cloud**:
+
+        - Program gets toots' content from Pure object, and creates a word cloud in shape of Mastodon
+
+
