@@ -17,11 +17,11 @@ Streamlit is an open-source app framework used to create a Dashboard with Python
 ## Main.py
 Main.py file functionality:
 1. Create a *Pure* object
-2. Display *Options Menu : 'User Toots','User Profile','Diffusion Netwok', 'Word Cloud'*
+2. Display *Options Menu : User Toots, User Profile, Diffusion Netwok, Word Cloud*
 3. If user selects **User Toots**:
-        - By getting a username from the user, program calls `get_user_id` and `get_user_toots` methods of Pure object and displays a graph of toots' favourites_count versus toot_time.
-            - Graph can also display details about each toot when clicked on it.
-    4.  If user selects **User Profile**:
+         - By getting a username from the user, program calls `get_user_id` and `get_user_toots` methods of Pure object and displays a graph of toots' favourites_count versus toot_time.
+         -Graph can also display details about each toot when clicked on it.
+4.  If user selects **User Profile**:
         - Program displays *.html* file that includes information about .... of user
         - Display Account Statistics: 
                 -  **Toots by day of week** - frequency of last 40 toots accorgins to the days of the week
