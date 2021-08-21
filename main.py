@@ -21,7 +21,7 @@ def show_network(df_table):
 # SETTING PAGE CONFIG TO WIDE MODE
 st.set_page_config(page_title = 'Dashboard', page_icon = '💯',layout="wide")
 
-radio_select = st.sidebar.radio(
+radio_select = st.sidebar.radio(  #options menu
     "Show:",
     ('User Toots','User Profile','Diffusion Netwok', 'Word Cloud'))
 def toots_graphs(id=149988):
