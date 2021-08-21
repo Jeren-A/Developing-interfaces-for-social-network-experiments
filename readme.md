@@ -22,24 +22,24 @@ Main.py file functionality:
 * Display *Options Menu : User Toots, User Profile, Diffusion Netwok, Word Cloud*
 * If user selects **User Toots**:
 
-         * Gets username and calls `get_user_id` and `get_user_toots` methods of Pure object
-         * Displays a graph of toots' favourites_count versus toot_time.
-         * Graph can also display details about each toot when clicked on it.
+         - Gets username and calls `get_user_id` and `get_user_toots` methods of Pure object
+         - Displays a graph of toots' favourites_count versus toot_time.
+         - Graph can also display details about each toot when clicked on it.
          
 *  If user selects **User Profile**:
         
-        * Program displays *.html* file that includes information about .... of user
-        * Display Account Statistics:
+        - Program displays *.html* file that includes information about .... of user
+        - Display Account Statistics:
                 * **Toots by day of week** - frequency of last 40 toots accorgins to the days of the week
                 * **Toots timeseries** - frequency of last 40 toots according to the timespan
 * If user selects **Diffusion Netwok**:
         
-        * Program gets user id from username
-        * Creates `followings_network` from Pure object 
-        * Displays Diffusion Network on Dashboard
+        - Program gets user id from username
+        - Creates `followings_network` from Pure object 
+        - Displays Diffusion Network on Dashboard
 * If user selects **Word Cloud**:
          
-         1. Program gets toots' content from Pure object and creates a word cloud of upto 3000 words in shape of Mastodon
+        - Program gets toots' content from Pure object and creates a word cloud of upto 3000 words in shape of Mastodon
 
 
 
