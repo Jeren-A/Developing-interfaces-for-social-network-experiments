@@ -22,13 +22,15 @@ Main.py file functionality:
 * Display *Options Menu : User Toots, User Profile, Diffusion Netwok, Word Cloud*
 * If user selects **User Toots**:
 
-         1. By getting a username from the user, program calls `get_user_id` and `get_user_toots` methods of Pure object and displays a graph of toots' favourites_count versus toot_time.
-         2. Graph can also display details about each toot when clicked on it.
+         1. Gets username and calls `get_user_id` and `get_user_toots` methods of Pure object
+         2. Displays a graph of toots' favourites_count versus toot_time.
+         3. Graph can also display details about each toot when clicked on it.
+         
 *  If user selects **User Profile**:
-        - Program displays *.html* file that includes information about .... of user
-        - Display Account Statistics:
-                - **Toots by day of week** - frequency of last 40 toots accorgins to the days of the week
-                - **Toots timeseries** - frequency of last 40 toots according to the timespan
+        1. Program displays *.html* file that includes information about .... of user
+        2. Display Account Statistics:
+                * **Toots by day of week** - frequency of last 40 toots accorgins to the days of the week
+                * **Toots timeseries** - frequency of last 40 toots according to the timespan
 * If user selects **Diffusion Netwok**:
         - Program gets user id from username
         - Creates `followings_network` from Pure object 
