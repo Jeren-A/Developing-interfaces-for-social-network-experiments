@@ -68,13 +68,4 @@ By creating a `Pure` object you create an actual mastadon API instance.  It has 
       1. Request an invite at streamlit.io/sharing (receiving invite may take couple of days)
       2. After receiveing your invite email, you can deploy your app by following the steps here https://docs.streamlit.io/en/stable/deploy_streamlit_app.html 
         
-        
-
-
-
- 
- 
- 
-
-
--  
+       
