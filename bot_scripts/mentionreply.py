@@ -9,12 +9,5 @@ def respond_to_hi(status):
     name = status.account.username
     return f"hey, {name}!"
 
-@bot._respond(Favourite)
-def respond(status):
-    name = status.reply.account.username
-    return f"hey, {name}!"
-
-
-
 
 bot.run()
