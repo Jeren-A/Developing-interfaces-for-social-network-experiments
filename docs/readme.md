@@ -125,10 +125,10 @@ You can use a prebuilt Docker image. Images are available from Docker Hub:
 
 ## Building the app
 
-Copy the files .env.production .env.db that have been provided to the /mastodon directory.
-Then change the docker-compose.yml  file with provided one.
+Copy the files `.env.production` and  `.env.db` that have been provided to the `/mastodon` directory.
+Then change the `docker-compose.yml`  file with provided one.
 
-In env.production file replace  `LOCAL_DOMAIN`  with your own domain name.
+In `env.production` file replace  `LOCAL_DOMAIN`  with your own domain name.
 
 To create an account for admin run the followings: 
 
