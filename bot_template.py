@@ -216,7 +216,7 @@ class Listener(StreamListener):
         string = "This status' sentiment analysis is classified as {}, with confidence of {}. Model provided from transformers 🤗 (https://github.com/huggingface/transformers)".format(label_score[0]['label'],label_score[0]['score'])
         pure.status_post(string,in_reply_to_id=toot_id)
         context = self.bot.context(status)
-        print('Context: ',context)
+        print('Context: ', context)
         print('Detected language: ', lang)
         #print(status)
     def handle_heartbeat(self):
@@ -266,8 +266,8 @@ class MastodonBot():
         return toot_context
 
 
-
-bot = MastodonBot()
-pure = Pure(access_token='./secrets/pure_user.secret',api_base_url='https://mastodon.social')
-listener = Listener(bot,pure)
-pure.stream_local(listener)
+if __name__ == '__main__':
+    bot = MastodonBot()
+    pure = Pure(access_token='./secrets/pure_user.secret',api_base_url='https://mastodon.social')
+    listener = Listener(bot,pure)
+    pure.stream_local(listener)
