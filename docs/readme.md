@@ -121,7 +121,9 @@ You can use a prebuilt Docker image. Images are available from Docker Hub:
 [Mastodon Docker Image](https://hub.docker.com/r/tootsuite/mastodon/)
 ```
 
-    
+## Docker Compose and and environment files
+Use these pre-configured files to avoid any problems.
+[Github](https://github.com/dogukanburda/mastodon-dockerized-production)
 
 ## Building the app
 
@@ -138,7 +140,6 @@ To create an account for admin run the followings:
 This is an interactive wizard that will guide you through the basic and necessary options and generate new app secrets. 
 
 App secrets part did not worked for me before so we generated them beforehand.
-
   1. Enter the Fully Qualified Domain Name (FQDN) of your mastodon instance.
   2. Select if you want a Single User instance (not recommended, but if you prefer, use that).
   3. Obviously, you are running mastodon in a docker instance, so type Y (or hit return, as it's the default)
