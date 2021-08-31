@@ -16,10 +16,10 @@ A domain name is also required for production. It can be acquired with `GitHub S
 
 
 
-# Install Docker
+## Install Docker
 Second step is to install `Docker Engine` on Ubuntu.
 
-## Set up the repository
+### Set up the repository
 1. Update the apt package index and install packages to allow apt to use a repository over HTTPS:
 
         sudo apt-get update
@@ -51,9 +51,9 @@ Second step is to install `Docker Engine` on Ubuntu.
 
 
 
-# Install Docker Compose
+### Install Docker Compose
 
-### Install Compose on Linux systems
+#### Install Compose on Linux systems
 1. Run this command to download the current stable release of Docker Compose:
 
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -148,6 +148,10 @@ App secrets part did not worked for me before so we generated them beforehand.
   6. If you want to store uploaded files on the cloud, enter Y here – I haven't tested that, but I expect you need an S3 or other cloud storage for that.
   7. If you want to send emails from the local machine, enter `Y` – considering we're in a docker environment, I have only used my local STMP server in FQDN form, not `localhost`. Enter port, user and password for SMTP `submission`. Select the SMTP authentication type (when submitting locally, `plain` should be fine). Decide if you want to verify the identity of the server and, if so, what type of verification you want to do. Choose what sender address the emails will have (I use `mastodon@*my.domain*`). 
 
+#### DNS Configuration
+
+Add `A Record` to instance IP with your DNS manager.
+
 ### Reverse Proxy
 You need a Reverse Proxy in front of your Mastodon instance. The preferred software for this Caddy 2 which is already a part of `docker-compose.yml` file that provided.  
 
@@ -169,9 +173,7 @@ Create a `Caddyfile` containing only these lines and replace `your.domain.tech` 
         reverse_proxy web:3000
         }
 
-### DNS Configuration
 
-Add `A Record` to instance IP with your DNS manager.
 
 
 ## Launch Mastodon
@@ -181,6 +183,23 @@ After it's done, you can launch Mastodon with:
     
 Within ~30 seconds all docker containers should be up and running.
 You can check it with `docker ps` command.
+
+## Creating accounts
+Main admin account is created when building the app. Any other accounts must be created and confirmed on the terminal with admin CLI that Mastodon provides.
+Since an e-mail delivery service or other SMTP server is not dedicated for the server, its only possible to confirm users with the admin CLI tool.
+
+Execute the following command on the terminal where the `docker-compose.yml` file exists to create an account 
+
+        docker-compose run --rm web bin/tootctl accounts create USERNAME --email EMAIL --confirmed
+
+Replace `USERNAME` and `EMAIL` with relevant information.
+
+If an account is created at sign-up page and waiting for confirmation, user can be modified with the following command:
+
+        docker-compose run --rm web bin/tootctl accounts modify USERNAME --confirm
+
+
+For further information about admin CLI, you can check out [Using the admin CLI](https://docs.joinmastodon.org/admin/tootctl/) 
 
 ----------
 
