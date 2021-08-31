@@ -1,6 +1,8 @@
-FROM ubuntu:latest
-RUN apt update
-RUN apt install python3 python3-pip -y
-RUN pip3 install -r requirements.txt
+FROM python:3.9
+WORKDIR /app
+COPY requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
+EXPOSE 8501
 COPY . /app
-CMD streamlit run /app/main.py
+ENTRYPOINT ["streamlit", "run"]
+CMD ["app.py"]
