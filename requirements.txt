@@ -10,3 +10,4 @@ pyvis>=0.1.9
 graphviz>=0.17
 wordcloud>=1.8.1
 altair>=4.1.0
+streamlit
