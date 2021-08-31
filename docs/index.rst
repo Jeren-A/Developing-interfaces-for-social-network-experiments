@@ -11,7 +11,7 @@ Welcome to Developing Interfaces for Social Network Experiments's documentation!
 Introduction
 ------------
 
-Social networks have become an essential part of our daily life. Millions access news and information through these platforms; However, these platforms can also be used as a tool to manipulate the public by disseminating automated false information with malicious content. Consequently, misinformation affects many areas of our lives, such as politics, financial markets, health industry, and many more (Gu et al., 2017, Pliviano et al., 2017, Kogan et al., 2020). Hence, this project aims to develop a system for online social network experimentations, a dashboard for configuring experiment settings, and agents that can automatically perform on the online platforms. 
+ ‎‎‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎Social networks have become an essential part of our daily life. Millions access news and information through these platforms; However, these platforms can also be used as a tool to manipulate the public by disseminating automated false information with malicious content. Consequently, misinformation affects many areas of our lives, such as politics, financial markets, health industry, and many more (Gu et al., 2017, Pliviano et al., 2017, Kogan et al., 2020). Hence, this project aims to develop a system for online social network experimentations, a dashboard for configuring experiment settings, and agents that can automatically perform on the online platforms. 
 
 
 
