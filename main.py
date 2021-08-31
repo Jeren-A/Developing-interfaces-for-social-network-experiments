@@ -130,7 +130,7 @@ elif radio_select=='User Profile':
     components.html(source_code, height = 600,width=1000)
     alt_day_ot_week, alt_timelinegraph = toots_graphs(id_of_user)
 
-    col1, col2 = st.beta_columns(2)
+    col1, col2 = st.columns(2)
 
     with col1:
         st.header("Toots by day of week")
