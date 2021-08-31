@@ -178,7 +178,7 @@ class Pure(Mastodon):
               @{username}
               <icon-verified user="user" class="ng-isolate-scope"><!-- ngIf: user.userData.verified --></icon-verified>
             </h1>
-            <a class="user-detail-profile-link ng-scope" ng-href="https://mastodon.social/@{username}" href="https://mastodon.social/@{username}">
+            <a class="user-detail-profile-link ng-scope" ng-href="https://mastodon.social/@{username}" href="https://mastodon.social/@{username}" target="_blank">
               <i class="glyphicon glyphicon-user"></i>
             </a>
             <div class="user-detail-banner-container ng-scope">
@@ -195,7 +195,7 @@ class Pure(Mastodon):
                   <dt>Description</dt>
                   <dd class="ng-binding">{note}</dd>
                   <dt>URL</dt>
-                  <dd><a href="{url}">{url}</a></dd>
+                  <dd><a href="{url}" target="_blank">{url}</a></dd>
                 </dl>
               </div>
               <div class="col-sm-4">
