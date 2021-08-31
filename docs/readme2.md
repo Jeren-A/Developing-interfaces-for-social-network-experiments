@@ -1,18 +1,38 @@
 # Dashboard and API
 
+Clone this project's repository.
+    
+    git clone https://github.com/dogukanburda/Developing-interfaces-for-social-network-experiments.git 
+    # Change directory to ./Developing-interfaces-for-social-network-experiments
+    cd Developing-interfaces-for-social-network-experiments
 
-## Install dependencies
+## Local development
+
+### Install dependencies
 To install all dependencies please run `requirements.txt`  file first:  
 
     pip install -r requirements.txt
 
-## Preview the project
+### Preview the project
 To view dashboard on your local host run:  
 
     streamlit run main.py
 
+## Deployment
 
-# Components: 
+### Dockerize the Streamlit web-app
+
+Build the docker image from the Dockerfile in the current folder
+
+    docker build -t streamlit-dashboard .
+
+Run the built image with 
+
+    docker run -p 8501:8501 dogukanburda/streamlit-dashboard:latest
+
+
+
+# Project Components
 
 ## Steamlit
 Streamlit is an open-source app framework used to create a Dashboard with Python.  
