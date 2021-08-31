@@ -28,7 +28,7 @@ Build the docker image from the Dockerfile in the current folder
 
 Run the built image with 
 
-    docker run -p 8501:8501 dogukanburda/streamlit-dashboard:latest
+    docker run -p 8501:8501 streamlit-dashboard:latest
 
 
 
