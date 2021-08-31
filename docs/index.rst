@@ -6,11 +6,12 @@
 Welcome to Developing Interfaces for Social Network Experiments's documentation!
 ================================================================================
 
+.. image:: _static/Developing_interfaces_for_social_network_experiments_1.png
+
+
 .. toctree::
 
    readme.md
-   readme2.md
-
 
 
 

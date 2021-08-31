@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Developing Interfaces for Social Network Experiments'
-copyright = '2021, Osman Doğukan Kefeli, Jeren Annagurbanova'
-author = 'Osman Doğukan Kefeli, Jeren Annagurbanova'
+copyright = '2021, Onur Varol, Osman Doğukan Kefeli, Jeren Annagurbanova'
+author = 'Onur Varol, Osman Doğukan Kefeli, Jeren Annagurbanova'
 
 # The full version, including alpha/beta/rc tags
 release = '2021'

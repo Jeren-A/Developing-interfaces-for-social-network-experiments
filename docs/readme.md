@@ -1,5 +1,4 @@
 # Getting Started
-------------
 
 This project requires a running instance of [Mastodon](https://github.com/mastodon/mastodon), a federated open source social media platform.  
 
@@ -20,7 +19,7 @@ A domain name is also required for production. It can be acquired with `GitHub S
 # Install Docker
 Second step is to install `Docker Engine` on Ubuntu.
 
-### Set up the repository
+## Set up the repository
 1. Update the apt package index and install packages to allow apt to use a repository over HTTPS:
 
         sudo apt-get update
@@ -79,9 +78,9 @@ To create the `docker` group and add your user:
 
         sudo groupadd docker
 
-2.Add your user to the `docker` group.
+2. Add your user to the `docker` group.
 
-         sudo usermod -aG docker $USER
+        sudo usermod -aG docker $USER
 
 3. Log out and log back in so that your group membership is re-evaluated.
 
@@ -115,16 +114,23 @@ Clone Mastodon's repository.
 
 ## Installing Docker containers
 
+```{admonition} Docker Images
+:class: tip
 
-You can use a prebuilt Docker image. Images are available from Docker Hub: https://hub.docker.com/r/tootsuite/mastodon/
-    
+You can use a prebuilt Docker image. Images are available from Docker Hub:  
+[Mastodon Docker Image](https://hub.docker.com/r/tootsuite/mastodon/)
+```
+
+## Docker Compose and and environment files
+Use these pre-configured files to avoid any problems.
+[Github](https://github.com/dogukanburda/mastodon-dockerized-production)
 
 ## Building the app
 
-Copy the files .env.production .env.db that have been provided to the /mastodon directory.
-Then change the docker-compose.yml  file with provided one.
+Copy the files `.env.production` and  `.env.db` that have been provided to the `/mastodon` directory.
+Then change the `docker-compose.yml`  file with provided one.
 
-In env.production file replace  `LOCAL_DOMAIN`  with your own domain name.
+In `env.production` file replace  `LOCAL_DOMAIN`  with your own domain name.
 
 To create an account for admin run the followings: 
 
@@ -134,7 +140,6 @@ To create an account for admin run the followings:
 This is an interactive wizard that will guide you through the basic and necessary options and generate new app secrets. 
 
 App secrets part did not worked for me before so we generated them beforehand.
-
   1. Enter the Fully Qualified Domain Name (FQDN) of your mastodon instance.
   2. Select if you want a Single User instance (not recommended, but if you prefer, use that).
   3. Obviously, you are running mastodon in a docker instance, so type Y (or hit return, as it's the default)
@@ -145,6 +150,7 @@ App secrets part did not worked for me before so we generated them beforehand.
 
 ### Reverse Proxy
 You need a Reverse Proxy in front of your Mastodon instance. The preferred software for this Caddy 2 which is already a part of `docker-compose.yml` file that provided.  
+
 Caddy 2 is still the only web server to use TLS automatically and by default. Caddy 2 
 enables to deploy and scale HTTPS effortlessly.
 
@@ -157,7 +163,8 @@ You need to configure [Caddy](https://caddyserver.com/v2) to serve your [Mastodo
 
 **Reminder: Replace all occurrences of example.com with your own instance's domain or sub-domain.**
 
-Create a `Caddyfile` containing only these lines and replace `your.domain.tech` with your own domain:
+Create a `Caddyfile` containing only these lines and replace `your.domain.tech` with your own domain:  
+
         your.domain.tech {
         reverse_proxy web:3000
         }
@@ -175,7 +182,7 @@ After it's done, you can launch Mastodon with:
 Within ~30 seconds all docker containers should be up and running.
 You can check it with `docker ps` command.
 
-
+----------
 
 ```{include} ./readme2.md
 ```
@@ -184,5 +191,5 @@ You can check it with `docker ps` command.
 
 ## Resources
 
-* https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Docker-Guide.md
-* https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Production-guide.md
+* [https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Docker-Guide.md](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Docker-Guide.md)
+* [https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Production-guide.md](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Production-guide.md)
